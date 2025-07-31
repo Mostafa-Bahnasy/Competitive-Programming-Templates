@@ -6,11 +6,13 @@ PI = 3.14159265359
 
 cos^-1 in C++ → acosl();
 
+// quadratic formula:
+// ax^2+bx+c=0  where a!=0
+// x = (-b (+-)sqrt(b^2 - 4ac)) /2a
+
 
 //Area of the Intersection of Two Circles : 
-
 const double PI = acos(-1);
-
 double circle_intersection_area(double r1, double r2, double d) {
     // No overlap
     if (d >= r1 + r2) return 0.0;
