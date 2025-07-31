@@ -1,0 +1,45 @@
+const int N = 1e7+7;
+int spf[N];
+
+void SPF() 
+{
+    iota(spf, spf+N, 0);
+
+    // loop over primes
+    for(int i = 2; i*i < N; i++) 
+    { 
+        if(spf[i] != i) continue; //i is not prime if spf[i] != i
+
+        for(int j = i*i; j < N; j+= i) { // loop over multiples of i
+            spf[j] = min(spf[j], i); // minimize to get the SMALLEST prime factor
+        }
+    }
+}
+
+// get all the prime factors of x using spf
+// must call SPF first, returns a vector with all prime factors
+// factorization is done in O(log(n)) time since number of primes can go up to log(n))
+vector<int> getFactors(int x) {
+    vector<int> ret;
+    while(x > 1) {
+        int p = spf[x];
+        ret.push_back(p);
+        x/=p;
+    }
+    return ret;
+}
+
+// get all the prime factors of x using spf
+// must call SPF first, returns a vector with all UNIQUE prime factors
+// factorization is done in O(log(n)) time since number of primes can go up to log(n))
+// notice that number of UNIQUE factors is only up to log(log(n)) but the factorization is still done in log(n)
+vector<int> getUniqueFactors(int x) {
+    vector<int> ret;
+    while(x > 1) {
+        int p = spf[x];
+        ret.push_back(p);
+        while(x%p == 0)
+            x/=p;
+    }
+    return ret;
+}
