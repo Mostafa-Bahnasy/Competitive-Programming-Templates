@@ -98,7 +98,6 @@ int main() {
   if (canEscape) printPath(ext.first, ext.second);
   return 0;
 }
-
 /*
 5 5
 E--E-
